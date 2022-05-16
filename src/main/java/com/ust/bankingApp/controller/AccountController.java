@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.ust.bankingApp.entity.Accounts;
+import com.ust.bankingApp.entity.Customers;
 import com.ust.bankingApp.response.AccountDetailResponse;
+import com.ust.bankingApp.response.CustomerBalanceResponse;
 import com.ust.bankingApp.service.AccountService;
 
 @RestController
@@ -60,6 +62,25 @@ public class AccountController {
 		return new ResponseEntity<Accounts>(accounts, HttpStatus.OK);
 	}
 	
+	@PostMapping("/update/{id}")
+	public ResponseEntity<Accounts> update(@PathVariable int id, @RequestBody Accounts account){
+		Accounts accounts=accountService.getAccountById(id);
+		try {
+			if(account!= null) {
+				accounts.setAccId(id);
+				accounts=accountService.addOrUpdateAccount(account);
+			
+			}
+			else {
+			return new ResponseEntity<Accounts>(accounts, HttpStatus.NOT_FOUND);
+			}}
+		catch(Exception ex) {
+			ex.getMessage();
+		}
+		return new ResponseEntity<Accounts>(accounts, HttpStatus.OK);
+	}
+	
+	
 	@DeleteMapping("/delete/{id}")
 	public ResponseEntity<Accounts> addOrUpdate(@PathVariable("id") int accountId){
 		Accounts accounts=null;
@@ -93,6 +114,18 @@ public class AccountController {
 			ex.getMessage();
 		}
 		return new ResponseEntity<List<AccountDetailResponse>>(accounts, HttpStatus.OK);
+	}
+	
+	@GetMapping("/accountDetailByIdDynamic/{id}")
+	public ResponseEntity<List<AccountDetailResponse>> getAccountDetail(@PathVariable("id") int accountId){
+		List<AccountDetailResponse> accounts=null;
+		try {
+			accounts=accountService.getAccountDetailById(accountId);
+		}
+		catch(Exception ex) {
+			ex.getMessage();
+		}
+		return new ResponseEntity<List<AccountDetailResponse>>(accounts,HttpStatus.OK);
 	}
 }
 

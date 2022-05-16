@@ -67,4 +67,10 @@ public class AccountServiceImpl implements AccountService {
 		return accountDao.getAccountDetail();
 	}
 
+	@Override
+	public List<AccountDetailResponse> getAccountDetailById(int accId) {
+		// TODO Auto-generated method stub
+		return accountDao.getAccountDetailById(accId);
+	}
+
 }

@@ -9,6 +9,7 @@ import com.ust.bankingApp.dao.AccountDao;
 import com.ust.bankingApp.dao.support.NamedParameterJdbcDaoSupportClass;
 import com.ust.bankingApp.response.AccountDetailResponse;
 
+
 @Repository
 public class AccountDaoImpl extends NamedParameterJdbcDaoSupportClass implements AccountDao {
 
@@ -18,6 +19,18 @@ public class AccountDaoImpl extends NamedParameterJdbcDaoSupportClass implements
 		try {
 			String query="select customer_id, name ,acc_id, email from customer join account on customer.customer_id=account.c_id where customer_id=1";
 			account= getNamedParameterJdbcTemplate().getJdbcOperations().query(query, new BeanPropertyRowMapper<AccountDetailResponse>(AccountDetailResponse.class));
+		}catch(Exception ex) {
+			ex.getStackTrace();
+		}
+		return account;
+	}
+
+	@Override
+	public List<AccountDetailResponse> getAccountDetailById(int id) {
+		List<AccountDetailResponse> account= null;
+		try {
+			String query="select customer_id, name, email,acc_id from customer join account on customer.customer_id=account.c_id where customer_id= ?";
+			account=getNamedParameterJdbcTemplate().getJdbcOperations().query(query, new Object[ ] {id}, new BeanPropertyRowMapper<AccountDetailResponse>(AccountDetailResponse.class));
 		}catch(Exception ex) {
 			ex.getStackTrace();
 		}

@@ -15,4 +15,6 @@ public interface AccountService {
 	public List<Accounts> getAccountByBalanceGreater(int balance);
 	
 	public List<AccountDetailResponse> getAccountDetail();
+	
+	public List<AccountDetailResponse> getAccountDetailById(int accId);
 }

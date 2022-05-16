@@ -8,10 +8,14 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.ust.bankingApp.entity.Accounts;
+import com.ust.bankingApp.entity.Customers;
 
 @Repository
 public interface AccountRepository extends CrudRepository<Accounts, Integer> {
 
 	@Query(value="select * from account where balance> :balance", nativeQuery = true)
 	public List<Accounts> getAccountByBalanceGreater(@Param("balance") int balance);
+
+
+	//public List<Accounts> getCustomersByCustomerId(@Param("accId") int accId);
 }
