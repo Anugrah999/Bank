@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ust.bankingApp.entity.Customers;
+import com.ust.bankingApp.repository.CustomerRepository;
 import com.ust.bankingApp.response.CustomerBalanceResponse;
 import com.ust.bankingApp.service.CustomerService;
+import com.ust.bankingApp.service.impl.CustomerServiceImpl;
 
 @RestController
 @RequestMapping("/customers")
@@ -60,6 +62,24 @@ public class CustomerController {
 		return new ResponseEntity<Customers>(customers, HttpStatus.OK);
 	}
 	
+	@PostMapping("/update/{id}")
+	public ResponseEntity<Customers> update(@PathVariable int id, @RequestBody Customers customer){
+		Customers customers=customerService.getCustomerById(id);
+		try {
+			if(customer!= null) {
+				customers.setCustomerId(id);
+				customers=customerService.addOrUpdateCustomer(customer);
+			
+			}
+			else {
+			return new ResponseEntity<Customers>(customers, HttpStatus.NOT_FOUND);
+			}}
+		catch(Exception ex) {
+			ex.getMessage();
+		}
+		return new ResponseEntity<Customers>(customers, HttpStatus.OK);
+	}
+	
 	@DeleteMapping("/delete/{id}")
 	public ResponseEntity<Customers> addOrUpdate(@PathVariable("id") int customerId){
 		Customers customers=null;
@@ -81,6 +101,17 @@ public class CustomerController {
 			ex.getMessage();
 		}
 		return new ResponseEntity<List<CustomerBalanceResponse>>(customers, HttpStatus.OK);
+	}
+	@GetMapping("/customerDetailByIdDynamic/{id}")
+	public ResponseEntity<List<CustomerBalanceResponse>> getCustomerDetailById(@PathVariable("id") int customerId){
+		List<CustomerBalanceResponse> customers=null;
+		try {
+			customers=customerService.getCustomerBalanceById(customerId);
+		}
+		catch(Exception ex) {
+			ex.getMessage();
+		}
+		return new ResponseEntity<List<CustomerBalanceResponse>>(customers,HttpStatus.OK);
 	}
 	
 }
