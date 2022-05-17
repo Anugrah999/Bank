@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.ust.bankingApp.entity.Accounts;
 import com.ust.bankingApp.entity.Customers;
+import com.ust.bankingApp.repository.AccountRepository;
 import com.ust.bankingApp.response.AccountDetailResponse;
 import com.ust.bankingApp.response.CustomerBalanceResponse;
 import com.ust.bankingApp.service.AccountService;
@@ -63,7 +64,7 @@ public class AccountController {
 	}
 	
 	@PostMapping("/update/{id}")
-	public ResponseEntity<Accounts> update(@PathVariable int id, @RequestBody Accounts account){
+	public ResponseEntity<Accounts> updateAccount(@PathVariable int id, @RequestBody Accounts account){
 		Accounts accounts=accountService.getAccountById(id);
 		try {
 			if(account!= null) {
