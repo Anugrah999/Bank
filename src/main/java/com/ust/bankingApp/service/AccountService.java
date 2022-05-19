@@ -17,4 +17,7 @@ public interface AccountService {
 	public List<AccountDetailResponse> getAccountDetail();
 	
 	public List<AccountDetailResponse> getAccountDetailById(int accId);
+	//public List<AccountDetailResponse> updateAccount(int accountId, int balance);
+	public int updateAccount(int accountId, int balance);
+
 }

@@ -9,4 +9,7 @@ public interface AccountDao {
 	public List<AccountDetailResponse> getAccountDetail();
 	
 	public List<AccountDetailResponse> getAccountDetailById(int accountId);
+	
+	//public List<AccountDetailResponse> updateAccount(int accountId, int balance);
+	public int updateAccount(int accountId, int balance);
 }

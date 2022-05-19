@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.fasterxml.jackson.annotation.JsonAlias;
 import com.ust.bankingApp.entity.Accounts;
 import com.ust.bankingApp.entity.Customers;
 import com.ust.bankingApp.repository.AccountRepository;
@@ -64,21 +66,19 @@ public class AccountController {
 	}
 	
 	@PostMapping("/update/{id}")
-	public ResponseEntity<Accounts> updateAccount(@PathVariable int id, @RequestBody Accounts account){
-		Accounts accounts=accountService.getAccountById(id);
+	//public ResponseEntity<String> updateAccount(@PathVariable int id, @RequestBody  String balance){
+	public int updateAccount(@PathVariable int id, @RequestBody  String balance){	
 		try {
-			if(account!= null) {
-				accounts.setAccId(id);
-				accounts=accountService.addOrUpdateAccount(account);
+			
+				var accounts=accountService.updateAccount(id, Integer.parseInt(balance) );
 			
 			}
-			else {
-			return new ResponseEntity<Accounts>(accounts, HttpStatus.NOT_FOUND);
-			}}
+			
 		catch(Exception ex) {
 			ex.getMessage();
 		}
-		return new ResponseEntity<Accounts>(accounts, HttpStatus.OK);
+		//return new ResponseEntity<String>("Account updated successfully", HttpStatus.OK);
+		return 1;
 	}
 	
 	

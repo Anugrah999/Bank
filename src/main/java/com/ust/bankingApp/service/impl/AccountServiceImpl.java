@@ -73,4 +73,11 @@ public class AccountServiceImpl implements AccountService {
 		return accountDao.getAccountDetailById(accId);
 	}
 
+	@Override
+	//public List<AccountDetailResponse> updateAccount(int accountId, int balance) {
+	public int updateAccount(int accountId, int balance) {
+		// TODO Auto-generated method stub
+		return accountDao.updateAccount(accountId, balance);
+	}
+
 }
