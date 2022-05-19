@@ -12,4 +12,5 @@ public interface AccountDao {
 	
 	//public List<AccountDetailResponse> updateAccount(int accountId, int balance);
 	public int updateAccount(int accountId, int balance);
+	
 }
