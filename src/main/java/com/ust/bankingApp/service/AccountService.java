@@ -3,10 +3,12 @@ package com.ust.bankingApp.service;
 import java.util.List;
 
 import com.ust.bankingApp.entity.Accounts;
+import com.ust.bankingApp.repository.AccountRepository;
 import com.ust.bankingApp.response.AccountDetailResponse;
 
 
 public interface AccountService {
+	
 
 	public List<Accounts> getAllAccounts();
 	public Accounts getAccountById(int accountId);

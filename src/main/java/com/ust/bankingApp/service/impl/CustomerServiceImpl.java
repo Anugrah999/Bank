@@ -64,7 +64,7 @@ public class CustomerServiceImpl implements CustomerService {
 	public List<CustomerBalanceResponse> getCustomerBalanceById(int customerId) {
 		// TODO Auto-generated method stub
 		return customerDao.getCustomerBalanceById(customerId);
-		//return customerRepository.getCustomersByCustomerId(customerId);
+	
 	}
  
 }

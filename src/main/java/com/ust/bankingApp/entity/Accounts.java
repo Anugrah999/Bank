@@ -18,11 +18,12 @@ public class Accounts {
 	@Column(name="acc_id")
 	private int accId;
 	
+	@Column(name="balance")
+	private int balance;
 	@Column(name="c_id")
 	private int cId;
 	
-	@Column(name="balance")
-	private int balance;
+
 	
 //	@JoinColumn(name="customer_id")
 //	@ManyToOne

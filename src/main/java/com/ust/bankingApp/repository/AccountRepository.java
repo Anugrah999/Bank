@@ -17,5 +17,4 @@ public interface AccountRepository extends CrudRepository<Accounts, Integer> {
 	public List<Accounts> getAccountByBalanceGreater(@Param("balance") int balance);
 
 
-	//public List<Accounts> getCustomersByCustomerId(@Param("accId") int accId);
 }
