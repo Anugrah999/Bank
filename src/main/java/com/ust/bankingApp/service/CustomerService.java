@@ -14,7 +14,7 @@ public interface CustomerService {
 	public Customers addOrUpdateCustomer(Customers customer);
 	public Customers deleteCustomer(int customerId) throws Exception;
 	
-	public List<CustomerBalanceResponse> getCustomerBalance();
-	//public List<CustomerBalanceResponse> getCustomerBalanceById(int customerId);  //@Param("customerId")
+//	public List<CustomerBalanceResponse> getCustomerBalance();
+
 	public List<CustomerBalanceResponse> getCustomerBalanceById(int customerId);
 }

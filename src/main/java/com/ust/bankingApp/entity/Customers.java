@@ -29,12 +29,11 @@ public class Customers {
 	@Column(name="phone")
 	private String phone;
 	
-//	@OneToMany(mappedBy = "customers", fetch= FetchType.EAGER)
-//	private List<Accounts> account;
+
 	
 	public Customers() {
 		super();
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	public Customers(int customerId, String name, String email, String phone) {

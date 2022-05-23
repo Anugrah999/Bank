@@ -10,27 +10,22 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="account")
+@Table(name = "account")
 public class Accounts {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="acc_id")
+	@Column(name = "acc_id")
 	private int accId;
-	
-	@Column(name="balance")
-	private int balance;
-	@Column(name="c_id")
-	private int cId;
-	
 
-	
-//	@JoinColumn(name="customer_id")
-//	@ManyToOne
-//	private Customers customers;
+	@Column(name = "balance")
+	private int balance;
+	@Column(name = "c_id")
+	private int cId;
+
 	public Accounts() {
 		super();
-		// TODO Auto-generated constructor stub
+
 	}
 
 	public Accounts(int accId, int cId, int balance) {
@@ -69,7 +64,4 @@ public class Accounts {
 		return "Accounts [accId=" + accId + ", cId=" + cId + ", balance=" + balance + "]";
 	}
 
-
-
-	
 }

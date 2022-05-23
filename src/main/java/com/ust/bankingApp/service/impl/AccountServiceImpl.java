@@ -17,39 +17,39 @@ public class AccountServiceImpl implements AccountService {
 
 	@Autowired
 	private AccountRepository accountRepository;
-	
+
 	@Autowired
 	private AccountDao accountDao;
-	
+
 	@Override
 	public List<Accounts> getAllAccounts() {
-		// TODO Auto-generated method stub
+
 		return (List<Accounts>) accountRepository.findAll();
 	}
 
 	@Override
 	public Accounts getAccountById(int accountId) {
-		// TODO Auto-generated method stub
+
 		return accountRepository.findById(accountId).orElse(null);
 	}
 
 	@Override
 	public Accounts addOrUpdateAccount(Accounts account) {
-		// TODO Auto-generated method stub
+
 		return accountRepository.save(account);
 	}
 
 	@Override
 	public Accounts deleteAccount(int accountId) throws Exception {
-		Accounts deletedAccount=null;
+		Accounts deletedAccount = null;
 		try {
-			deletedAccount=accountRepository.findById(accountId).orElse(null);
-			if(deletedAccount==null) {
+			deletedAccount = accountRepository.findById(accountId).orElse(null);
+			if (deletedAccount == null) {
 				throw new Exception("account not available");
-			}else {
+			} else {
 				accountRepository.deleteById(accountId);
 			}
-		}catch(Exception ex) {
+		} catch (Exception ex) {
 			throw ex;
 		}
 		return deletedAccount;
@@ -57,26 +57,26 @@ public class AccountServiceImpl implements AccountService {
 
 	@Override
 	public List<Accounts> getAccountByBalanceGreater(int balance) {
-		
+
 		return accountRepository.getAccountByBalanceGreater(balance);
 	}
 
-	@Override
-	public List<AccountDetailResponse> getAccountDetail() {
-		// TODO Auto-generated method stub
-		return accountDao.getAccountDetail();
-	}
+//	@Override
+//	public List<AccountDetailResponse> getAccountDetail() {
+//		// TODO Auto-generated method stub
+//		return accountDao.getAccountDetail();
+//	}
 
 	@Override
 	public List<AccountDetailResponse> getAccountDetailById(int accId) {
-		// TODO Auto-generated method stub
+
 		return accountDao.getAccountDetailById(accId);
 	}
 
 	@Override
-	//public List<AccountDetailResponse> updateAccount(int accountId, int balance) {
+
 	public int updateAccount(int accountId, int balance) {
-		// TODO Auto-generated method stub
+
 		return accountDao.updateAccount(accountId, balance);
 	}
 

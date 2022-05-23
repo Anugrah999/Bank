@@ -9,9 +9,9 @@ import com.ust.bankingApp.response.CustomerBalanceResponse;
 
 public interface CustomerDao {
 
-	public List<CustomerBalanceResponse> getCustomerBalance(); 
+//	public List<CustomerBalanceResponse> getCustomerBalance(); 
 	
-	public List<CustomerBalanceResponse> getCustomerBalanceById( int customerId); //@Param("customerId")
+	public List<CustomerBalanceResponse> getCustomerBalanceById( int customerId); 
 	
 
 
