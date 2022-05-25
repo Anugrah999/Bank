@@ -5,31 +5,25 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="account")
+@Table(name = "account")
 public class Accounts {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="acc_id")
+	@Column(name = "acc_id")
 	private int accId;
-	
-	@Column(name="c_id")
-	private int cId;
-	
-	@Column(name="balance")
+
+	@Column(name = "balance")
 	private int balance;
-	
-//	@JoinColumn(name="customer_id")
-//	@ManyToOne
-//	private Customers customers;
+	@Column(name = "c_id")
+	private int cId;
+
 	public Accounts() {
 		super();
-		// TODO Auto-generated constructor stub
+
 	}
 
 	public Accounts(int accId, int cId, int balance) {
@@ -68,7 +62,4 @@ public class Accounts {
 		return "Accounts [accId=" + accId + ", cId=" + cId + ", balance=" + balance + "]";
 	}
 
-
-
-	
 }

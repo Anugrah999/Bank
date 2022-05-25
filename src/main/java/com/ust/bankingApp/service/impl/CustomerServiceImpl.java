@@ -1,10 +1,8 @@
 package com.ust.bankingApp.service.impl;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.ust.bankingApp.dao.CustomerDao;
 import com.ust.bankingApp.entity.Customers;
 import com.ust.bankingApp.repository.CustomerRepository;
@@ -16,19 +14,19 @@ public class CustomerServiceImpl implements CustomerService {
 
 	@Autowired
 	private CustomerRepository customerRepository;
-	
+
 	@Autowired
 	private CustomerDao customerDao;
-	
+
 	@Override
 	public List<Customers> getAllCustomers() {
-		// TODO Auto-generated method stub
+
 		return (List<Customers>) customerRepository.findAll();
 	}
 
 	@Override
 	public Customers getCustomerById(int customerId) {
-		// TODO Auto-generated method stub
+
 		return customerRepository.findById(customerId).orElse(null);
 	}
 
@@ -38,33 +36,28 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 
 	@Override
-	public Customers deleteCustomer(int customerId) throws Exception {
-		Customers deletedCustomer=null;
+	public boolean deleteCustomer(int customerId) throws Exception {
+		Customers deletedCustomer = null;
+		
 		try {
-			deletedCustomer =customerRepository.findById(customerId).orElse(null);
-			if(deletedCustomer==null) {
+			deletedCustomer = customerRepository.findById(customerId).orElse(null);
+			if (deletedCustomer == null) {
 				throw new Exception("customer not available");
-			}else {
+			} else {
 				customerRepository.deleteById(customerId);
 			}
-		}catch(Exception ex) {
-			throw ex;
+		} catch (Exception ex) {
+		
+			return false;
 		}
-		return null;
+		return true;
 	}
-
-	@Override
-	public List<CustomerBalanceResponse> getCustomerBalance() {
-		// TODO Auto-generated method stub
-		return customerDao.getCustomerBalance();
-	}
-
 
 	@Override
 	public List<CustomerBalanceResponse> getCustomerBalanceById(int customerId) {
-		// TODO Auto-generated method stub
+
 		return customerDao.getCustomerBalanceById(customerId);
-		//return customerRepository.getCustomersByCustomerId(customerId);
+
 	}
- 
+
 }
