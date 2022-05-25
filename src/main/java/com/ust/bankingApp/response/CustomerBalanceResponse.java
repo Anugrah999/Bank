@@ -10,7 +10,7 @@ public class CustomerBalanceResponse {
 
 	public CustomerBalanceResponse() {
 		super();
-		// TODO Auto-generated constructor stub
+
 	}
 
 	public CustomerBalanceResponse(int customer_id, String name, String email, int acc_id, int balance) {

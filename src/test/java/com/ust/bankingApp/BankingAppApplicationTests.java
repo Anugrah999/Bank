@@ -9,5 +9,5 @@ class BankingAppApplicationTests {
 	@Test
 	void contextLoads() {
 	}
-
+	
 }
