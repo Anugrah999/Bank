@@ -2,6 +2,7 @@ package com.ust.bankingApp.service.impl;
 
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,14 +34,16 @@ public class AccountServiceImpl implements AccountService {
 		return accountRepository.findById(accountId).orElse(null);
 	}
 
+
+
 	@Override
-	public Accounts addOrUpdateAccount(Accounts account) {
+	public Accounts addAccount(Accounts account) {
 
 		return accountRepository.save(account);
 	}
 
 	@Override
-	public Accounts deleteAccount(int accountId) throws Exception {
+	public boolean deleteAccount(int accountId) throws Exception {
 		Accounts deletedAccount = null;
 		try {
 			deletedAccount = accountRepository.findById(accountId).orElse(null);
@@ -50,9 +53,9 @@ public class AccountServiceImpl implements AccountService {
 				accountRepository.deleteById(accountId);
 			}
 		} catch (Exception ex) {
-			throw ex;
+			return false;
 		}
-		return deletedAccount;
+		return true;
 	}
 
 	@Override
@@ -60,7 +63,7 @@ public class AccountServiceImpl implements AccountService {
 
 		return accountRepository.getAccountByBalanceGreater(balance);
 	}
-
+ 
 	@Override
 	public List<AccountDetailResponse> getAccountDetailById(int accId) {
 
@@ -69,9 +72,9 @@ public class AccountServiceImpl implements AccountService {
 
 	@Override
 
-	public int updateAccount(int accountId, int balance) {
+	public int updateAccountBalance(int accountId, int balance) {
 
-		return accountDao.updateAccount(accountId, balance);
+		return accountDao.updateAccountBalance(accountId, balance);
 	}
 
 }

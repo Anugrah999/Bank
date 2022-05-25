@@ -25,10 +25,10 @@ public class AccountDaoImpl extends NamedParameterJdbcDaoSupportClass implements
 		}
 		return account;
 	}
-
+ 
 	@Override
 
-	public int updateAccount(int accountId, int balance) {
+	public int updateAccountBalance(int accountId, int balance) {
 		int accountUpdate=0;
 		List<AccountDetailResponse> account = null;
 		try {

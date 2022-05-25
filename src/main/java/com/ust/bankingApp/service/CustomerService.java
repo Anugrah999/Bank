@@ -10,9 +10,9 @@ public interface CustomerService {
 
 	public Customers getCustomerById(int customerId);
 
-	public Customers addOrUpdateCustomer(Customers customer);
+	public Customers addCustomer(Customers customer);
 
 	public boolean deleteCustomer(int customerId) throws Exception;
 
-	public List<CustomerBalanceResponse> getCustomerBalanceById(int customerId);
+	public List<CustomerBalanceResponse> getCustomerDetailById(int customerId);
 }

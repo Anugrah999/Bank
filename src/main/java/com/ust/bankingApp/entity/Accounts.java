@@ -23,7 +23,7 @@ public class Accounts {
 
 	public Accounts() {
 		super();
-
+ 
 	}
 
 	public Accounts(int accId, int cId, int balance) {

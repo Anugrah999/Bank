@@ -10,7 +10,7 @@ import com.ust.bankingApp.response.CustomerBalanceResponse;
 
 @Repository
 public class CustomerDaoImpl extends NamedParameterJdbcDaoSupportClass implements CustomerDao {
-
+ 
 	public List<CustomerBalanceResponse> getCustomerBalanceById(int id) {
 		List<CustomerBalanceResponse> customers = null;
 		try {

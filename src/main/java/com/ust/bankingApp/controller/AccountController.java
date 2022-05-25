@@ -1,6 +1,7 @@
 package com.ust.bankingApp.controller;
 
 import java.util.List;
+import java.util.Objects;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,62 +37,91 @@ public class AccountController {
 		return new ResponseEntity<List<Accounts>>(accounts, HttpStatus.OK);
 	}
 
-	@GetMapping("/getById/{id}") // check condition
-	public ResponseEntity<Accounts> getAccountById(@PathVariable("id") int accountId) {
-		log.info("inside view account by Id method");
-		Accounts accounts = null;
 
-		accounts = accountService.getAccountById(accountId);
-		log.info("displayed account details with account id as {}", accountId);
-		return new ResponseEntity<Accounts>(accounts, HttpStatus.OK);
+	@GetMapping("/getById/{id}")
+	public ResponseEntity<Object> getAccountById(@PathVariable("id") int accountId) {
+		log.info("inside view account by Id method");
+		Accounts accounts = accountService.getAccountById(accountId);
+
+		if (Objects.nonNull(accounts)) {
+			log.info("displayed account details with account id as {}", accountId);
+			return new ResponseEntity<Object>(accounts, HttpStatus.OK);
+		} else {
+			log.info("account not found");
+			return new ResponseEntity<Object>("account not found", HttpStatus.NOT_FOUND);
+		}
+
 	}
 
-	@PostMapping("/add") // rename mthd
-	public ResponseEntity<Accounts> addOrUpdate(@RequestBody Accounts account) {
+	@PostMapping("/add")
+	public ResponseEntity<Accounts> addAccount(@RequestBody Accounts account) {
 		log.info("inside add account method");
 		Accounts accounts = null;
-		accounts = accountService.addOrUpdateAccount(account);
+		accounts = accountService.addAccount(account);
 		log.info("new account added");
 		return new ResponseEntity<Accounts>(accounts, HttpStatus.OK);
 	}
 
-	@PostMapping("/update/{id}") // updateBalance and check for account available or not
-	public ResponseEntity<String> updateAccount(@PathVariable int id, @RequestBody String balance) {
+	@PostMapping("/update/{id}")
+	public ResponseEntity<String> updateAccountBalance(@PathVariable int id, @RequestBody String balance) {
 		log.info("inside update account method");
-		var accounts = accountService.updateAccount(id, Integer.parseInt(balance));
+		var accounts = accountService.updateAccountBalance(id, Integer.parseInt(balance));
 		log.info("account balance updated with account Id as {}", id);
 		if (accounts == 1)
 			return new ResponseEntity<String>("Balance Updated", HttpStatus.OK);
-		else 
+		else
 			return new ResponseEntity<String>("Balance could not be updated", HttpStatus.BAD_REQUEST);
 	}
 
-	@DeleteMapping("/delete/{id}") // mthd name
-	public ResponseEntity<Accounts> addOrUpdate(@PathVariable("id") int accountId) {
+	@DeleteMapping("/delete/{id}")
+	public ResponseEntity<String> deleteAccount(@PathVariable("id") int accountId) {
 		log.info("inside delete account method");
-		Accounts accounts = null;
+		boolean accounts = false;
 		try {
 			accounts = accountService.deleteAccount(accountId);
-			log.info("account deleted with account Id {}", accountId);
+
 		} catch (Exception ex) {
 			ex.getMessage();
 		}
-		return new ResponseEntity<Accounts>(accounts, HttpStatus.OK);
+		if (accounts == true) {
+			log.info("account deleted with account Id {}", accountId);
+			return new ResponseEntity<String>("Account deleted", HttpStatus.OK);
+		} else {
+			log.info("account not found with account Id {}", accountId);
+			return new ResponseEntity<String>("Account could not be deleted", HttpStatus.BAD_REQUEST);
+		}
 	}
-
-	@GetMapping("/allAccountsByBalanceGreater/{balance}") // rename method
-	public ResponseEntity<List<Accounts>> getAallAccountsByBalanceGreater(@PathVariable("balance") int balance) {
+ 
+	@GetMapping("/allAccountsByBalanceGreater/{balance}")
+	public ResponseEntity<List<Accounts>> getAllAccountsByBalanceGreater(@PathVariable("balance") int balance) {
 		List<Accounts> accounts = null;
 		accounts = accountService.getAccountByBalanceGreater(balance);
 		return new ResponseEntity<List<Accounts>>(accounts, HttpStatus.OK);
 	}
 
-	@GetMapping("/accountDetailById/{id}") // rename method and check cond
-	public ResponseEntity<List<AccountDetailResponse>> getAccountDetail(@PathVariable("id") int accountId) {
+	@GetMapping("/accountDetailById/{id}") // check cond
+	public ResponseEntity<List<AccountDetailResponse>> getAccountDetails(@PathVariable("id") int accountId) {
 		log.info("inside view all details of account method");
 		List<AccountDetailResponse> accounts = null;
 		accounts = accountService.getAccountDetailById(accountId);
 		log.info("displayed account details with customer id as {}", accountId);
 		return new ResponseEntity<List<AccountDetailResponse>>(accounts, HttpStatus.OK);
 	}
+
+//	@GetMapping("/accountDetailById/{id}") // check cond
+//	public ResponseEntity<Object<AccountDetailResponse>> getAccountDetails(@PathVariable("id") int accountId) {
+//		log.info("inside view all details of account method");
+//		List<AccountDetailResponse> accounts =  accountService.getAccountDetailById(accountId);
+//		
+//		if(Objects.nonNull(accounts)) {
+//			log.info("displayed account details with customer id as {}", accountId);
+//			return new ResponseEntity<Object<AccountDetailResponse>>(accounts, HttpStatus.OK);	
+//		}
+//		else {
+//			log.info("account not found");
+//			return new ResponseEntity<Object<AccountDetailResponse>>("account not found", HttpStatus.NOT_FOUND);
+//		}
+	
+//	}
+
 }

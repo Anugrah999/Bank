@@ -8,6 +8,6 @@ public interface AccountDao {
 
 	public List<AccountDetailResponse> getAccountDetailById(int accountId);
 
-	public int updateAccount(int accountId, int balance);
+	public int updateAccountBalance(int accountId, int balance);
 
 }

@@ -10,14 +10,14 @@ public interface AccountService {
 
 	public Accounts getAccountById(int accountId);
 
-	public Accounts addOrUpdateAccount(Accounts account);
+	public Accounts addAccount(Accounts account);
 
-	public Accounts deleteAccount(int accountId) throws Exception;
+	public boolean deleteAccount(int accountId) throws Exception;
 
 	public List<Accounts> getAccountByBalanceGreater(int balance);
 
 	public List<AccountDetailResponse> getAccountDetailById(int accId);
 
-	public int updateAccount(int accountId, int balance);
+	public int updateAccountBalance(int accountId, int balance);
 
 }

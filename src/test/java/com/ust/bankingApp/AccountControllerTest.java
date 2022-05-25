@@ -52,8 +52,8 @@ public class AccountControllerTest {
 	public void addOrUpdateTest() {
 		accounts = new Accounts(1070, 67809, 20);
 
-		when(accountService.addOrUpdateAccount(accounts)).thenReturn(accounts);
-		ResponseEntity<Accounts> res = accountController.addOrUpdate(accounts);
+		when(accountService.addAccount(accounts)).thenReturn(accounts);
+		ResponseEntity<Accounts> res = accountController.addAccount(accounts);
 		assertEquals(HttpStatus.OK, res.getStatusCode());
 		assertEquals(accounts, res.getBody());
 

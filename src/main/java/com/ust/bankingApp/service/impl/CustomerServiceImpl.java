@@ -20,7 +20,7 @@ public class CustomerServiceImpl implements CustomerService {
 
 	@Override
 	public List<Customers> getAllCustomers() {
-
+ 
 		return (List<Customers>) customerRepository.findAll();
 	}
 
@@ -31,7 +31,7 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 
 	@Override
-	public Customers addOrUpdateCustomer(Customers customer) {
+	public Customers addCustomer(Customers customer) {
 		return customerRepository.save(customer);
 	}
 
@@ -54,7 +54,7 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 
 	@Override
-	public List<CustomerBalanceResponse> getCustomerBalanceById(int customerId) {
+	public List<CustomerBalanceResponse> getCustomerDetailById(int customerId) {
 
 		return customerDao.getCustomerBalanceById(customerId);
 

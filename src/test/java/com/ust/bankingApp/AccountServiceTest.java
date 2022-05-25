@@ -48,7 +48,7 @@ public class AccountServiceTest {
 	public void addOrUpdateAccountTest() {
 		Accounts accounts = new Accounts(1010, 600, 3);
 		when(accountRepository.save(accounts)).thenReturn(accounts);
-		assertEquals(accounts, accountService.addOrUpdateAccount(accounts));
+		assertEquals(accounts, accountService.addAccount(accounts));
 	}
 	
 	@Test
