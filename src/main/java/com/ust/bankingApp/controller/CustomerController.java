@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.ust.bankingApp.entity.Customers;
+import com.ust.bankingApp.response.AccountDetailResponse;
 import com.ust.bankingApp.response.CustomerBalanceResponse;
 import com.ust.bankingApp.service.CustomerService;
 
@@ -93,15 +94,33 @@ public class CustomerController {
 
 	}
 
-	@GetMapping("/customerDetailById/{id}") // heck cond
+	@GetMapping("/customerDetailById/{id}") 
 	public ResponseEntity<List<CustomerBalanceResponse>> getCustomerDetailById(@PathVariable("id") int customerId) {
 		log.info("inside view all details of customer method");
-		List<CustomerBalanceResponse> customers = null;
-
-		customers = customerService.getCustomerDetailById(customerId);
+		List<CustomerBalanceResponse> customers = customerService.getCustomerDetailById(customerId);
+		
+		if(Objects.nonNull(customers) && !customers.isEmpty()) {
 		log.info("displayed customer balance with customer id as {}", customerId);
-
 		return new ResponseEntity<List<CustomerBalanceResponse>>(customers, HttpStatus.OK);
-	}
+		}
+		else {
+			log.info("account not found");
+			return new ResponseEntity<List<CustomerBalanceResponse>>(customers, HttpStatus.NOT_FOUND);
+		}
+		}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 }

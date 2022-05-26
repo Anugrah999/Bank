@@ -65,7 +65,7 @@ public class AccountServiceImpl implements AccountService {
 	}
  
 	@Override
-	public List<AccountDetailResponse> getAccountDetailById(int accId) {
+	public List<AccountDetailResponse> getAccountDetailByCustomerId(int accId) {
 
 		return accountDao.getAccountDetailById(accId);
 	}

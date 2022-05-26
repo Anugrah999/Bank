@@ -16,7 +16,7 @@ public interface AccountService {
 
 	public List<Accounts> getAccountByBalanceGreater(int balance);
 
-	public List<AccountDetailResponse> getAccountDetailById(int accId);
+	public List<AccountDetailResponse> getAccountDetailByCustomerId(int accId);
 
 	public int updateAccountBalance(int accountId, int balance);
 

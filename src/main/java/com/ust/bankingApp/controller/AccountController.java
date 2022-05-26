@@ -99,29 +99,21 @@ public class AccountController {
 		return new ResponseEntity<List<Accounts>>(accounts, HttpStatus.OK);
 	}
 
-	@GetMapping("/accountDetailById/{id}") // check cond
-	public ResponseEntity<List<AccountDetailResponse>> getAccountDetails(@PathVariable("id") int accountId) {
-		log.info("inside view all details of account method");
-		List<AccountDetailResponse> accounts = null;
-		accounts = accountService.getAccountDetailById(accountId);
-		log.info("displayed account details with customer id as {}", accountId);
-		return new ResponseEntity<List<AccountDetailResponse>>(accounts, HttpStatus.OK);
-	}
 
-//	@GetMapping("/accountDetailById/{id}") // check cond
-//	public ResponseEntity<Object<AccountDetailResponse>> getAccountDetails(@PathVariable("id") int accountId) {
-//		log.info("inside view all details of account method");
-//		List<AccountDetailResponse> accounts =  accountService.getAccountDetailById(accountId);
-//		
-//		if(Objects.nonNull(accounts)) {
-//			log.info("displayed account details with customer id as {}", accountId);
-//			return new ResponseEntity<Object<AccountDetailResponse>>(accounts, HttpStatus.OK);	
-//		}
-//		else {
-//			log.info("account not found");
-//			return new ResponseEntity<Object<AccountDetailResponse>>("account not found", HttpStatus.NOT_FOUND);
-//		}
-	
-//	}
+	@GetMapping("/accountDetailByCustomerId/{id}") 
+	public ResponseEntity<List<AccountDetailResponse>> getAccountDetailsByCustomerDetail(@PathVariable("id") int accountId) {
+		log.info("inside view all details of account method");
+		List<AccountDetailResponse> accounts =  accountService.getAccountDetailByCustomerId(accountId);
+		
+		if(Objects.nonNull(accounts) && !accounts.isEmpty()) {
+			log.info("displayed account details with customer id as {}", accountId);
+			return new ResponseEntity<List<AccountDetailResponse>>(accounts, HttpStatus.OK);
+		}
+		else {
+			log.info("account not found");
+			return new ResponseEntity<List<AccountDetailResponse>>(accounts, HttpStatus.NOT_FOUND);
+		}
+			
+	}
 
 }

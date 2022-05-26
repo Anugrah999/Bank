@@ -27,7 +27,6 @@ public class AccountDaoImpl extends NamedParameterJdbcDaoSupportClass implements
 	}
  
 	@Override
-
 	public int updateAccountBalance(int accountId, int balance) {
 		int accountUpdate=0;
 		List<AccountDetailResponse> account = null;
