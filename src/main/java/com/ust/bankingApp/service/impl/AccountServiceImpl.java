@@ -2,7 +2,6 @@ package com.ust.bankingApp.service.impl;
 
 import java.util.List;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,8 +33,6 @@ public class AccountServiceImpl implements AccountService {
 		return accountRepository.findById(accountId).orElse(null);
 	}
 
-
-
 	@Override
 	public Accounts addAccount(Accounts account) {
 
@@ -63,7 +60,7 @@ public class AccountServiceImpl implements AccountService {
 
 		return accountRepository.getAccountByBalanceGreater(balance);
 	}
- 
+
 	@Override
 	public List<AccountDetailResponse> getAccountDetailByCustomerId(int accId) {
 

@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.ust.bankingApp.entity.Customers;
-import com.ust.bankingApp.response.AccountDetailResponse;
 import com.ust.bankingApp.response.CustomerBalanceResponse;
 import com.ust.bankingApp.service.CustomerService;
 
@@ -53,7 +52,7 @@ public class CustomerController {
 
 	}
 
-	@PostMapping("/add") // rename mthd
+	@PostMapping("/add")
 	public ResponseEntity<Customers> addCustomer(@RequestBody Customers customer) {
 		log.info("inside add customer method");
 		Customers customers = null;
